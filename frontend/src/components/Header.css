@@ -1,0 +1,30 @@
+header {
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-main {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-left>ul {
+    display: flex;
+    list-style-type: none;
+    gap: 15px;
+}
+
+.header-left a {
+    text-decoration: none;
+    color: #43465A;
+}

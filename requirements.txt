@@ -1,0 +1,32 @@
+Project Name: QuizFlow
+It will be a web application to conduct online quiz.
+
+Application Users:
+|_ admin
+|
+|_ student
+
+Admin features:
+Create batch
+Edit batch
+Delete batch
+Add student 
+Update student details
+Delete student
+Quiz CRUD + AI powered quiz creation
+Check student progress
+
+Student features:
+login
+solve Quiz
+check his own progress.
+Show learboard of quiz.
+
+AI --> Desing(Stitch)
+
+frontend libaries:
+react-router-dom: For implementing routing
+
+Command:
+npm i react-router-dom
+

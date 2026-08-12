@@ -1,0 +1,16 @@
+:root {
+  --bg: #F9F9FF;
+  --primary: #004ac6;
+  --secondary: #07006c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: "border-box";
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+}
