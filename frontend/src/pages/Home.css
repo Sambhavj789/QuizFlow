@@ -1,0 +1,68 @@
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 60px;
+}
+
+.hero-right {
+    background-color: white;
+    height: 500px;
+    box-shadow: var(--shadow-md);
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-left>h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    line-height: 1.3;
+}
+
+.hero-left>h1>span {
+    color: var(--primary);
+}
+
+.hero-left>p {
+    color: var(--text-muted);
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.hero-left>.hero-action-btns {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.hero-action-btns>button {
+    height: 50px;
+    width: 150px;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-action-btns>button:nth-child(1) {
+    background-color: var(--primary);
+    color: white;
+}
+
+.hero-action-btns>button:nth-child(1):hover {
+    background-color: var(--primary-hover);
+}
+
+.hero-action-btns>button:nth-child(2) {
+    background-color: transparent;
+    border: 1px solid var(--border-dark);
+}
+
+.hero-action-btns>button:nth-child(2):hover {
+    background-color: var(--border-light);
+}

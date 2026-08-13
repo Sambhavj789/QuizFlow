@@ -28,5 +28,5 @@ frontend libaries:
 react-router-dom: For implementing routing
 
 Command:
-npm i react-router-dom
+npm i react-router-dom react-icons
 

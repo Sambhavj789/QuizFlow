@@ -1,16 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  --bg: #F9F9FF;
-  --primary: #004ac6;
-  --secondary: #07006c;
+   /* =========================
+     Colors
+  ========================== */
+   --bg: #F9F9FF;
+
+   --primary: #004AC6;
+   --primary-hover: #003A9E;
+   --primary-light: #E8F0FF;
+
+   --secondary: #07006C;
+   --secondary-light: #EDEBFF;
+
+   /* =========================
+     Text
+  ========================== */
+   --text-primary: #0F172A;
+   --text-secondary: #475569;
+   --text-muted: #64748B;
+   --text-light: #94A3B8;
+   --text-white: #FFFFFF;
+
+   /* =========================
+     Border
+  ========================== */
+   --border: #E2E8F0;
+   --border-light: #F1F5F9;
+   --border-dark: #CBD5E1;
+   --border-primary: #004AC6;
+
+   /* =========================
+     Status
+  ========================== */
+   --success: #16A34A;
+   --error: #DC2626;
+   --warning: #F59E0B;
+
+   /* =========================
+     Shadows
+  ========================== */
+   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+   --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+   --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.10);
+   --shadow-xl: 0 20px 40px rgba(15, 23, 42, 0.12);
+   --shadow-primary: 0 6px 16px rgba(0, 74, 198, 0.20);
+
+   /* =========================
+     Typography
+  ========================== */
+   --font-family: "Inter", system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: "border-box";
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  background-color: var(--bg);
+   min-height: 100vh;
+   background-color: var(--bg);
+   color: var(--text-primary);
+   font-family: var(--font-family);
+}
+
+main {
+   padding: 40px;
+}
+
+main>* {
+   max-width: 1300px;
+   margin: auto;
 }
