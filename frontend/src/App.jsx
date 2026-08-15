@@ -1,17 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Header from "./components/Header";
 import Login from "./pages/Login";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import PublicLayout from "./layouts/PublicLayout";
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </main>
+      <Routes>
+        {/* Public Layout */}
+        <Route path="/" element={<PublicLayout />}>
+          <Route path="" element={<Home />} />
+          <Route path="login" element={<Login />} />
+        </Route>
+
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="" element={<AdminDashboard />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

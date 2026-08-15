@@ -29,6 +29,8 @@ function Login() {
             <input type="password" />
           </div>
         </div>
+
+        <button className="login-button">Login</button>
       </form>
     </section>
   );
