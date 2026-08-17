@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import PublicLayout from "./layouts/PublicLayout";
+import AdminQuizBuilder from "./pages/admin/AdminQuizBuilder";
 function App() {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="" element={<AdminDashboard />} />
+          <Route path="create-quiz" element={<AdminQuizBuilder />} />
         </Route>
       </Routes>
     </BrowserRouter>

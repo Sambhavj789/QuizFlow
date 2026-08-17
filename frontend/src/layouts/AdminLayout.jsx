@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
+import { IoCreate } from "react-icons/io5";
+
 import "./AdminLayout.css";
 function AdminLayout() {
   return (
@@ -22,12 +24,12 @@ function AdminLayout() {
           <div className="admin-sidebar-nav">
             <div className="admin-sidebar-nav-row selected">
               <MdDashboard className="nav-icon" />
-              <Link to="/">Dashboard</Link>
+              <Link to="/admin">Dashboard</Link>
             </div>
 
             <div className="admin-sidebar-nav-row">
-              <MdDashboard className="nav-icon" />
-              <Link to="/">Dashboard</Link>
+              <IoCreate className="nav-icon" />
+              <Link to="/admin/create-quiz">Quiz Builder</Link>
             </div>
 
             <div className="admin-sidebar-nav-row">
