@@ -7,6 +7,7 @@ import PublicLayout from "./layouts/PublicLayout";
 import AdminQuizBuilder from "./pages/admin/AdminQuizBuilder";
 import AdminManageStudents from "./pages/admin/AdminManageStudents";
 import AdminManageBatches from "./pages/admin/AdminManageBatches";
+import AdminManageQuizzes from "./pages/admin/AdminManageQuizzes";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
           <Route path="create-quiz" element={<AdminQuizBuilder />} />
           <Route path="manage-students" element={<AdminManageStudents />} />
           <Route path="manage-batches" element={<AdminManageBatches />} />
+          <Route path="manage-quizzes" element={<AdminManageQuizzes />} />
         </Route>
       </Routes>
     </BrowserRouter>

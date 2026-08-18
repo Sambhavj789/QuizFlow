@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { MdDashboard, MdGroup, MdClass } from "react-icons/md";
+import { MdDashboard, MdGroup, MdClass, MdOutlineQuiz } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 
 import "./AdminLayout.css";
@@ -31,6 +31,11 @@ function AdminLayout() {
             <NavLink to="/admin/create-quiz" className="admin-sidebar-nav-row">
               <IoCreate className="nav-icon" />
               <span>Quiz Builder</span>
+            </NavLink>
+
+            <NavLink to="/admin/manage-quizzes" className="admin-sidebar-nav-row">
+              <MdOutlineQuiz className="nav-icon" />
+              <span>Manage Quizzes</span>
             </NavLink>
 
             <NavLink to="/admin/manage-students" className="admin-sidebar-nav-row">
