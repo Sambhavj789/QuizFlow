@@ -1,12 +1,12 @@
 .quiz-builder-header {
     background-color: white;
-    height: 100px;
     box-shadow: var(--shadow-md);
     border-radius: 20px;
     padding: 20px;
     display: grid;
     grid-template-columns: 7fr 3fr;
     gap: 20px;
+    height: 100px;
 }
 
 .quiz-builder-header-actions {
@@ -43,6 +43,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 40px;
+    align-items: start;
 }
 
 .quiz-builder-questions-container {
@@ -186,4 +187,89 @@
     border-radius: 20px;
     padding: 20px;
     background-color: white;
+}
+
+
+/* Quiz Setting Panel */
+
+.quiz-settings-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.settings-icon {
+    font-size: 25px;
+}
+
+.quiz-settings-select-batch {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.quiz-settings-select-batch>label {
+    font-size: 20px;
+}
+
+.quiz-settings-select-batch>select {
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--bg);
+    border: 2px solid var(--border);
+}
+
+.quiz-settings-marking-scheme {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.quiz-settings-marking-scheme>div {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.quiz-settings-marking-scheme>div>div>input {
+    height: 30px;
+    margin-top: 10px;
+    background-color: var(--bg);
+    border: 1px solid var(--border-dark);
+}
+
+.quiz-settings-marking-scheme>div>div>label {
+    font-size: 18px;
+}
+
+.quiz-settings-marking-scheme>label {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.add-question-button {
+    margin-top: 20px;
+    background-color: var(--primary);
+    text-align: center;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-question-button:hover {
+    background-color: var(--primary-hover);
+}
+
+
+.quiz-question-header-title>input {
+    height: 40px;
+    width: 400px;
+    padding: 5px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
