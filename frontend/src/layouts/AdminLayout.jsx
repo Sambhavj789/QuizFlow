@@ -1,5 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
-import { MdDashboard } from "react-icons/md";
+import { NavLink, Outlet } from "react-router-dom";
+import { MdDashboard, MdGroup, MdClass } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 
 import "./AdminLayout.css";
@@ -22,34 +22,41 @@ function AdminLayout() {
           </div>
 
           <div className="admin-sidebar-nav">
-            <div className="admin-sidebar-nav-row selected">
+            <div className="admin-sidebar-nav-title">Menu</div>
+            <NavLink to="/admin" end className="admin-sidebar-nav-row">
               <MdDashboard className="nav-icon" />
-              <Link to="/admin">Dashboard</Link>
-            </div>
+              <span>Dashboard</span>
+            </NavLink>
 
-            <div className="admin-sidebar-nav-row">
+            <NavLink to="/admin/create-quiz" className="admin-sidebar-nav-row">
               <IoCreate className="nav-icon" />
-              <Link to="/admin/create-quiz">Quiz Builder</Link>
-            </div>
+              <span>Quiz Builder</span>
+            </NavLink>
 
-            <div className="admin-sidebar-nav-row">
-              <MdDashboard className="nav-icon" />
-              <Link to="/">Dashboard</Link>
-            </div>
+            <NavLink to="/admin/manage-students" className="admin-sidebar-nav-row">
+              <MdGroup className="nav-icon" />
+              <span>Manage Students</span>
+            </NavLink>
 
-            <div className="admin-sidebar-nav-row">
-              <MdDashboard className="nav-icon" />
-              <Link to="/">Dashboard</Link>
-            </div>
-
-            <div className="admin-sidebar-nav-row">
-              <MdDashboard className="nav-icon" />
-              <Link to="/">Dashboard</Link>
-            </div>
+            <NavLink to="/admin/manage-batches" className="admin-sidebar-nav-row">
+              <MdClass className="nav-icon" />
+              <span>Manage Batches</span>
+            </NavLink>
           </div>
         </div>
 
-        <div className="admin-sidebar-end"></div>
+        <div className="admin-sidebar-end">
+          <div className="admin-profile-card">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX8MiDqLSxS6aaFZr8cpRyYdvSDzWC9ukMa9sdDnCS7swoO8WDZxmRJFYJO-g45rQ9KBKqyyyjNX_mP6pRG4rDEXe6TFI29R7M-l2VLB6C3cGc1YbzSHgZ72SAZElMukKU5a5gQ1WFEtd3qx3ZmFPV5X-Lhc5cJmcbc-Dj__839YB4jHR0pnzwWFh4oQPdxJUuRKb6f1_H8vBy8AOZhtE0ZFa6BZzzRfBLKp-8PeMbBhBXx1IXvglp"
+              alt=""
+            />
+            <div>
+              <span>Admin User</span>
+              <span>admin@quizflow.com</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="admin-content">

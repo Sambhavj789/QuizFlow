@@ -9,6 +9,14 @@
     background-color: white;
     height: 500px;
     box-shadow: var(--shadow-md);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.hero-right>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-left {
@@ -65,4 +73,67 @@
 
 .hero-action-btns>button:nth-child(2):hover {
     background-color: var(--border-light);
+}
+
+/* Feature Cards */
+.home-cards {
+    margin-top: 80px;
+    text-align: center;
+}
+
+.home-cards>h2 {
+    font-size: 34px;
+}
+
+.home-cards-subtitle {
+    color: var(--text-muted);
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.home-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.home-card {
+    background-color: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 35px 25px;
+    text-align: left;
+    transition: var(--transition);
+}
+
+.home-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.home-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    background-color: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.home-card>h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.home-card>p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
 }
