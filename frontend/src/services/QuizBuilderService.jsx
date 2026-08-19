@@ -5,10 +5,21 @@ function useQuiz() {
     {
       title: "",
       options: ["", "", "", ""],
-      correctOption: 0,
+      correctOption: 1,
       explanation: "",
     },
   ]);
+
+  const [quizSettings, setQuizSetting] = useState({
+    quizTitle: "",
+    batch: "",
+    correctMarks: 0,
+    incorrectMarks: 0,
+  });
+
+  function handleQuizSettingsChange(field, value) {
+    setQuizSetting({ ...quizSettings, [field]: value });
+  }
 
   function addQuestion() {
     const newQuestion = {
@@ -29,7 +40,31 @@ function useQuiz() {
     setQuestions(tempQuestions);
   }
 
-  return { questions, addQuestion, handleQuestionChange };
+  function handleQuizOptionChange(questionIndex, optionIndex, value) {
+    const tempQuestion = { ...questions[questionIndex] };
+    tempQuestion.options[optionIndex] = value;
+    const temp = [...questions];
+    temp[questionIndex] = tempQuestion;
+    setQuestions(temp);
+  }
+
+  function handleMarkCorrectOption(questionIndex, optionIndex) {
+    const tempQuestion = { ...questions[questionIndex] };
+    tempQuestion.correctOption = optionIndex;
+    const temp = [...questions];
+    temp[questionIndex] = tempQuestion;
+    setQuestions(temp);
+  }
+
+  return {
+    questions,
+    addQuestion,
+    handleQuestionChange,
+    handleQuizOptionChange,
+    handleMarkCorrectOption,
+    quizSettings,
+    handleQuizSettingsChange,
+  };
 }
 
 export default useQuiz;

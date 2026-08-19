@@ -4,7 +4,15 @@ import { IoMdSettings } from "react-icons/io";
 import useQuiz from "../../services/QuizBuilderService";
 
 function AdminQuizBuilder() {
-  const { questions, addQuestion, handleQuestionChange } = useQuiz();
+  const {
+    questions,
+    addQuestion,
+    handleQuestionChange,
+    handleQuizOptionChange,
+    handleMarkCorrectOption,
+    quizSettings,
+    handleQuizSettingsChange,
+  } = useQuiz();
 
   return (
     <section className="quiz-builder-section">
@@ -14,6 +22,10 @@ function AdminQuizBuilder() {
           type="text"
           className="quiz-builder-input"
           placeholder="Enter Quiz Title..."
+          value={quizSettings.quizTitle}
+          onChange={(e) =>
+            handleQuizSettingsChange("quizTitle", e.target.value)
+          }
         />
         <div className="quiz-builder-header-actions">
           <button>Create With AI</button>
@@ -52,6 +64,9 @@ function AdminQuizBuilder() {
                       <input
                         type="radio"
                         checked={optionIndex == question.correctOption}
+                        onChange={() =>
+                          handleMarkCorrectOption(index, optionIndex)
+                        }
                       />
                       <span>{["A", "B", "C", "D"][optionIndex]}</span>
                     </div>
@@ -60,6 +75,13 @@ function AdminQuizBuilder() {
                       className="quiz-option-input"
                       placeholder="Enter Option..."
                       value={option}
+                      onChange={(e) =>
+                        handleQuizOptionChange(
+                          index,
+                          optionIndex,
+                          e.target.value,
+                        )
+                      }
                     />
                   </div>
                 ))}
@@ -99,7 +121,12 @@ function AdminQuizBuilder() {
 
           <div className="quiz-settings-select-batch">
             <label>Target Batch</label>
-            <select>
+            <select
+              value={quizSettings.batch}
+              onChange={(e) =>
+                handleQuizSettingsChange("batch", e.target.value)
+              }
+            >
               <option>Select Batch</option>
             </select>
           </div>
@@ -109,12 +136,24 @@ function AdminQuizBuilder() {
             <div>
               <div>
                 <label>Correct</label>
-                <input type="text" />
+                <input
+                  type="number"
+                  value={quizSettings.correctMarks}
+                  onChange={(e) =>
+                    handleQuizSettingsChange("correctMarks", e.target.value)
+                  }
+                />
               </div>
 
               <div>
                 <label>Incorrect</label>
-                <input type="text" />
+                <input
+                  type="number"
+                  value={quizSettings.incorrectMarks}
+                  onChange={(e) =>
+                    handleQuizSettingsChange("incorrectMarks", e.target.value)
+                  }
+                />
               </div>
             </div>
           </div>

@@ -30,3 +30,7 @@ react-router-dom: For implementing routing
 Command:
 npm i react-router-dom react-icons
 
+backend libaries:
+express: For creating server
+cors: For cross domain resource sharing
+mongoose: For database
