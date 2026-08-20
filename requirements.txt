@@ -34,3 +34,4 @@ backend libaries:
 express: For creating server
 cors: For cross domain resource sharing
 mongoose: For database
+dotenv: For accessing varaibales of .env file
