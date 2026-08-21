@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../api/api";
 
 function useQuiz() {
   const [questions, setQuestions] = useState([
@@ -56,6 +57,22 @@ function useQuiz() {
     setQuestions(temp);
   }
 
+  async function handleSubmit() {
+    const data = {
+      title: quizSettings.quizTitle,
+      batch: quizSettings.batch,
+      correctMarks: quizSettings.correctMarks,
+      incorrectMarks: quizSettings.incorrectMarks,
+      questions: questions,
+    };
+    const response = await api.post("/quiz/add-quiz", data);
+    if (response.data?.success) {
+      alert("Quiz Added Successfully");
+    } else {
+      alert("Some Error Occured...");
+    }
+  }
+
   return {
     questions,
     addQuestion,
@@ -64,6 +81,7 @@ function useQuiz() {
     handleMarkCorrectOption,
     quizSettings,
     handleQuizSettingsChange,
+    handleSubmit,
   };
 }
 

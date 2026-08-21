@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRoutes from "./routes/userRoutes.js";
 import batchRoutes from "./routes/batchRoutes.js";
+import quizRoutes from "./routes/quizRoutes.js";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.get("/health", (req, res) => {
 });
 app.use("/user", userRoutes);
 app.use("/batch", batchRoutes);
+app.use("/quiz", quizRoutes);
 
 const PORT = process.env.PORT || 4400;
 app.listen(PORT, () => {

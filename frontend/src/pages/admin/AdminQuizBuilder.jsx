@@ -12,6 +12,7 @@ function AdminQuizBuilder() {
     handleMarkCorrectOption,
     quizSettings,
     handleQuizSettingsChange,
+    handleSubmit,
   } = useQuiz();
 
   return (
@@ -29,7 +30,7 @@ function AdminQuizBuilder() {
         />
         <div className="quiz-builder-header-actions">
           <button>Create With AI</button>
-          <button>Save Quiz</button>
+          <button onClick={handleSubmit}>Save Quiz</button>
         </div>
       </div>
 

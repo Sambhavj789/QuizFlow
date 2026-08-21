@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdAdd, MdDelete, MdClose } from "react-icons/md";
+import api from "../../api/api";
 
 import "./AdminManageBatches.css";
 
-const batchesData = [
-  { id: 1, name: "Batch 2026 - A" },
-  { id: 2, name: "Batch 2026 - B" },
-  { id: 3, name: "Batch 2026 - C" },
-  { id: 4, name: "Batch 2026 - D" },
-];
-
 function AdminManageBatches() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [batches, setBatches] = useState([]);
+  const [batchName, setBatchName] = useState("");
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get("/batch/get-all");
+      if (response.data?.success) {
+        setBatches(response.data?.data);
+      } else {
+        alert("Some Error In getting data");
+      }
+    }
+    getData();
+  }, []);
+
+  async function handleSubmit() {
+    const response = await api.post("/batch/add-batch", { name: batchName });
+    if (response.data?.success) {
+      alert("Batch Added!");
+    } else {
+      alert("Some Error Occured");
+    }
+  }
 
   return (
     <section className="manage-batches-section">
@@ -21,7 +38,10 @@ function AdminManageBatches() {
           <h1>Manage Batches</h1>
           <p>View and manage all coaching batches</p>
         </div>
-        <button className="manage-batches-add-btn" onClick={() => setIsModalOpen(true)}>
+        <button
+          className="manage-batches-add-btn"
+          onClick={() => setIsModalOpen(true)}
+        >
           <MdAdd />
           Add Batch
         </button>
@@ -29,10 +49,12 @@ function AdminManageBatches() {
 
       {/* Batches Grid */}
       <div className="manage-batches-grid">
-        {batchesData.map((batch) => (
+        {batches.map((batch) => (
           <div className="batch-card" key={batch.id}>
             <div className="batch-card-icon">
-              <span className="batch-card-initial">{batch.name.split(" - ")[1]}</span>
+              <span className="batch-card-initial">
+                {batch.name.split(" - ")[1]}
+              </span>
             </div>
             <h3>{batch.name}</h3>
             <button className="batch-delete-btn" title="Delete">
@@ -48,19 +70,32 @@ function AdminManageBatches() {
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Add Batch</h2>
-              <MdClose className="modal-close-icon" onClick={() => setIsModalOpen(false)} />
+              <MdClose
+                className="modal-close-icon"
+                onClick={() => setIsModalOpen(false)}
+              />
             </div>
             <div className="modal-body">
               <div className="modal-form-group">
                 <label>Batch Name</label>
-                <input type="text" placeholder="Enter batch name" />
+                <input
+                  type="text"
+                  placeholder="Enter batch name"
+                  value={batchName}
+                  onChange={(e) => setBatchName(e.target.value)}
+                />
               </div>
             </div>
             <div className="modal-footer">
-              <button className="modal-cancel-btn" onClick={() => setIsModalOpen(false)}>
+              <button
+                className="modal-cancel-btn"
+                onClick={() => setIsModalOpen(false)}
+              >
                 Cancel
               </button>
-              <button className="modal-submit-btn">Add Batch</button>
+              <button className="modal-submit-btn" onClick={handleSubmit}>
+                Add Batch
+              </button>
             </div>
           </div>
         </div>
