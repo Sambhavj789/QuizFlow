@@ -44,35 +44,58 @@
 
 .hero-left>.hero-action-btns {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     margin-top: 40px;
+    flex-wrap: wrap;
 }
 
-.hero-action-btns>button {
-    height: 50px;
-    width: 150px;
-    border: none;
-    font-size: 18px;
-    border-radius: 5px;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: var(--radius-md);
     cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
-.hero-action-btns>button:nth-child(1) {
+.btn-primary {
     background-color: var(--primary);
-    color: white;
+    color: var(--text-white);
+    box-shadow: var(--shadow-primary);
 }
 
-.hero-action-btns>button:nth-child(1):hover {
+.btn-primary:hover {
     background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
-.hero-action-btns>button:nth-child(2) {
+.btn-primary .md-arrow-right {
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover .md-arrow-right {
+    transform: translateX(4px);
+}
+
+.btn-outline {
     background-color: transparent;
-    border: 1px solid var(--border-dark);
+    color: var(--text-secondary);
+    border: 2px solid var(--border-dark);
 }
 
-.hero-action-btns>button:nth-child(2):hover {
+.btn-outline:hover {
     background-color: var(--border-light);
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 /* Feature Cards */

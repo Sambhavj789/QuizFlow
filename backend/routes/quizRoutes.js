@@ -17,4 +17,10 @@ router.post("/delete-quiz", async (req, res) => {
   await Quiz.findByIdAndDelete(quizId);
   res.send({ success: true, message: "Quiz Deleted Successfully" });
 });
+
+router.get("/get-all", async (req, res) => {
+  const quizzes = await Quiz.find();
+  res.send({ success: true, message: "Success", data: quizzes });
+});
+
 export default router;

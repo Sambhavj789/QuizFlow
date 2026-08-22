@@ -25,4 +25,9 @@ router.post("/update-batch", async (req, res) => {
   res.send({ success: true, message: "Batch Updated Successfully" });
 });
 
+router.get("/get-all", async (req, res) => {
+  const batches = await Batch.find();
+  res.send({ success: true, message: "Success", data: batches });
+});
+
 export default router;

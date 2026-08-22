@@ -9,7 +9,10 @@ function Header() {
           <h1>QuizFlow</h1>
           <ul>
             <li>
-              <Link to="#">Home</Link>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/quizzes">Quizzes</Link>
             </li>
             <li>
               <Link to="#">About</Link>
@@ -22,7 +25,9 @@ function Header() {
 
         {/* Right Section of Header */}
         <div className="header-right">
-          <button className="login-btn">Login</button>
+          <Link to="/login">
+            <button className="login-btn">Login</button>
+          </Link>
         </div>
       </div>
     </header>

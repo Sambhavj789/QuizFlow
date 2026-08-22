@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api/api";
+import { useEffect } from "react";
 
 function useQuiz() {
   const [questions, setQuestions] = useState([
@@ -17,6 +18,19 @@ function useQuiz() {
     correctMarks: 0,
     incorrectMarks: 0,
   });
+
+  const [batches, setBatches] = useState([]);
+
+  async function getBatches() {
+    const response = await api.get("/batch/get-all");
+    if (response.data?.success) {
+      setBatches(response.data?.data);
+    }
+  }
+
+  useEffect(() => {
+    getBatches();
+  }, []);
 
   function handleQuizSettingsChange(field, value) {
     setQuizSetting({ ...quizSettings, [field]: value });
@@ -82,6 +96,7 @@ function useQuiz() {
     quizSettings,
     handleQuizSettingsChange,
     handleSubmit,
+    batches,
   };
 }
 

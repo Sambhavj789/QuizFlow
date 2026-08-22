@@ -1,5 +1,6 @@
 import "./Home.css";
-import { MdQuiz, MdGroup, MdInsights, MdAutoAwesome } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { MdQuiz, MdGroup, MdInsights, MdAutoAwesome, MdArrowRight } from "react-icons/md";
 
 const features = [
   {
@@ -43,8 +44,11 @@ function Home() {
           </p>
 
           <div className="hero-action-btns">
-            <button>Start Now</button>
-            <button>View Demo</button>
+            <Link to="/quizzes" className="btn btn-primary">
+              <MdArrowRight />
+              <span>Start Now</span>
+            </Link>
+            <button className="btn btn-outline">View Demo</button>
           </div>
         </div>
         <div className="hero-right">

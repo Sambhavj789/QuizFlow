@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import QuizList from "./pages/student/QuizList";
+import QuizSolve from "./pages/student/QuizSolve";
+import QuizResult from "./pages/student/QuizResult";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import PublicLayout from "./layouts/PublicLayout";
@@ -16,6 +19,9 @@ function App() {
         <Route path="/" element={<PublicLayout />}>
           <Route path="" element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="quizzes" element={<QuizList />} />
+          <Route path="quiz/:quizId/solve" element={<QuizSolve />} />
+          <Route path="quiz/:quizId/result" element={<QuizResult />} />
         </Route>
 
         {/* Admin Routes */}

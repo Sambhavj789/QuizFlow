@@ -32,4 +32,9 @@ router.post("/login", async (req, res) => {
   res.send({ success: true, message: "Login Successfully", data: userData });
 });
 
+router.get("/get-all-students", async (req, res) => {
+  const allStudents = await User.find({ role: "student" });
+  res.send({ success: true, message: "Success", data: allStudents });
+});
+
 export default router;

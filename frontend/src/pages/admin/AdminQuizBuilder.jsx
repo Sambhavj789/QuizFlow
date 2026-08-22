@@ -13,6 +13,7 @@ function AdminQuizBuilder() {
     quizSettings,
     handleQuizSettingsChange,
     handleSubmit,
+    batches,
   } = useQuiz();
 
   return (
@@ -39,7 +40,7 @@ function AdminQuizBuilder() {
         {/* This will contain all the questiions */}
         <div className="quiz-builder-questions-container">
           {questions.map((question, index) => (
-            <div className="quiz-question-card">
+            <div className="quiz-question-card" key={index}>
               <div className="quiz-question-header">
                 <div className="quiz-question-header-title">
                   Question {index + 1}
@@ -128,7 +129,13 @@ function AdminQuizBuilder() {
                 handleQuizSettingsChange("batch", e.target.value)
               }
             >
-              <option>Select Batch</option>
+              <option hidden>Select Batch</option>
+              {batches.map((batch) => (
+                <option value={batch._id} key={batch._id}>
+                  {batch.name}
+                </option>
+              ))}
+
             </select>
           </div>
 

@@ -4,6 +4,8 @@ import userRoutes from "./routes/userRoutes.js";
 import batchRoutes from "./routes/batchRoutes.js";
 import quizRoutes from "./routes/quizRoutes.js";
 import dotenv from "dotenv";
+import cors from "cors";
+
 dotenv.config();
 
 // Logic to connect to Database:
@@ -21,6 +23,7 @@ async function connectToDB() {
 connectToDB();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 app.get("/health", (req, res) => {

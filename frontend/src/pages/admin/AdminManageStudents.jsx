@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MdAdd, MdEdit, MdDelete, MdClose } from "react-icons/md";
-
+import api from "../../api/api";
 import "./AdminManageStudents.css";
 
 const studentsData = [
@@ -23,20 +23,42 @@ function AdminManageStudents() {
 
   const [students, setStudents] = useState([]);
   const [batches, setBatches] = useState([]);
+
   function handleChange(e) {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   }
 
   useEffect(() => {
-    async function getStudents() {}
+    async function getStudents() {
+      const response = await api.get("/user/get-all-students");
+      if (response.data?.success) {
+        setStudents(response.data?.data);
+      } else {
+        alert("Some Error Occured In Fetching Students");
+      }
+    }
 
-    async function getBatches() {}
+    async function getBatches() {
+      const response = await api.get("/batch/get-all");
+      if (response.data?.success) {
+        setBatches(response.data?.data);
+      } else {
+        alert("Error In Feching Batches");
+      }
+    }
     getStudents();
     getBatches();
   }, []);
 
-  async function handleSubmit() {}
+  async function handleSubmit() {
+    const response = await api.post("/user/add-user", data);
+    if (response.data?.success) {
+      alert("Student Added Successfully");
+    } else {
+      alert("Some Error Occured");
+    }
+  }
 
   return (
     <section className="manage-students-section">
@@ -67,8 +89,8 @@ function AdminManageStudents() {
             </tr>
           </thead>
           <tbody>
-            {studentsData.map((student) => (
-              <tr key={student.id}>
+            {students.map((student) => (
+              <tr key={student._id}>
                 <td>
                   <div className="student-name-cell">
                     <span className="student-avatar">
@@ -114,19 +136,47 @@ function AdminManageStudents() {
             <div className="modal-body">
               <div className="modal-form-group">
                 <label>Student Name</label>
-                <input type="text" placeholder="Enter student name" />
+                <input
+                  type="text"
+                  placeholder="Enter student name"
+                  value={data.name}
+                  name="name"
+                  onChange={handleChange}
+                />
               </div>
+
               <div className="modal-form-group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter student email" />
+                <input
+                  type="email"
+                  placeholder="Enter student email"
+                  value={data.email}
+                  name="email"
+                  onChange={handleChange}
+                />
               </div>
+
+              <div className="modal-form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Enter student password"
+                  value={data.password}
+                  name="password"
+                  onChange={handleChange}
+                />
+              </div>
+
               <div className="modal-form-group">
                 <label>Batch</label>
-                <select>
-                  <option>Select Batch</option>
-                  <option>Batch 2026 - A</option>
-                  <option>Batch 2026 - B</option>
-                  <option>Batch 2026 - C</option>
+                <select name="batch" onChange={handleChange} value={data.batch}>
+                  <option hidden>Select Batch</option>
+
+                  {batches.map((batch) => (
+                    <option key={batch._id} value={batch._id}>
+                      {batch.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -137,7 +187,9 @@ function AdminManageStudents() {
               >
                 Cancel
               </button>
-              <button className="modal-submit-btn">Add Student</button>
+              <button className="modal-submit-btn" onClick={handleSubmit}>
+                Add Student
+              </button>
             </div>
           </div>
         </div>

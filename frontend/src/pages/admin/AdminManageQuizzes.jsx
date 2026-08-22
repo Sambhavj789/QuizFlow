@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { MdAdd, MdDelete, MdOutlineQuiz } from "react-icons/md";
 
 import "./AdminManageQuizzes.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import api from "../../api/api";
 
 const quizzesData = [
   { id: 1, name: "Physics - Motion & Force" },
@@ -12,6 +15,21 @@ const quizzesData = [
 ];
 
 function AdminManageQuizzes() {
+  
+  const [quizzes, setQuizzes] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await api.get("/quiz/get-all");
+      if (response.data?.success) {
+        setQuizzes(response.data?.data);
+      } else {
+        alert("Some Error Occured");
+      }
+    }
+    getData();
+  }, []);
+
   return (
     <section className="manage-quizzes-section">
       {/* Header */}
@@ -28,12 +46,12 @@ function AdminManageQuizzes() {
 
       {/* Quizzes List */}
       <div className="manage-quizzes-list">
-        {quizzesData.map((quiz) => (
-          <div className="quiz-list-card" key={quiz.id}>
+        {quizzes.map((quiz) => (
+          <div className="quiz-list-card" key={quiz._id}>
             <div className="quiz-list-icon">
               <MdOutlineQuiz />
             </div>
-            <span className="quiz-list-name">{quiz.name}</span>
+            <span className="quiz-list-name">{quiz.title}</span>
             <button className="quiz-list-delete-btn" title="Delete">
               <MdDelete />
             </button>
