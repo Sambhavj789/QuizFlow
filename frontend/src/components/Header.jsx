@@ -1,6 +1,8 @@
 import "./Header.css";
 import { Link } from "react-router-dom";
 function Header() {
+  const user = JSON.parse(localStorage.getItem("userData") || "[]");
+
   return (
     <header>
       <div className="header-main">

@@ -23,4 +23,16 @@ router.get("/get-all", async (req, res) => {
   res.send({ success: true, message: "Success", data: quizzes });
 });
 
+router.get("/:batchId", async (req, res) => {
+  const batchId = req.params.batchId;
+  const quizzes = await Quiz.find({ batch: batchId });
+  res.send({ success: true, message: "Success", data: quizzes });
+});
+
+router.get("/single/:quizId", async (req, res) => {
+  const quizId = req.params.quizId;
+  const quizData = await Quiz.findById(quizId);
+  res.send({ success: true, message: "Success", data: quizData });
+});
+
 export default router;

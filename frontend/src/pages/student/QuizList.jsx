@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { MdPlayArrow, MdCheckCircle, MdLockClock, MdQuiz, MdRefresh } from "react-icons/md";
+import {
+  MdPlayArrow,
+  MdCheckCircle,
+  MdLockClock,
+  MdQuiz,
+  MdRefresh,
+} from "react-icons/md";
 import "./QuizList.css";
+import api from "../../api/api";
 
 const demoQuizzes = [
   {
@@ -75,6 +82,20 @@ const demoQuizzes = [
 function QuizList() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState("all");
+  const [quizzes, setQuizzes] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      const response = await api.get(`/quiz/${userData.batch}`);
+      if (response.data?.success) {
+        setQuizzes(response.data?.data);
+      } else {
+        alert("Error In Getting Quiz");
+      }
+    }
+    getData();
+  }, []);
 
   const handleStartQuiz = (quizId) => {
     navigate(`/quiz/${quizId}/solve`);
@@ -117,8 +138,8 @@ function QuizList() {
       </div>
 
       <div className="quiz-grid">
-        {filteredQuizzes.map((quiz) => (
-          <div key={quiz.id} className="quiz-card">
+        {quizzes.map((quiz) => (
+          <div key={quiz._id} className="quiz-card">
             <div className="quiz-card-header">
               <div className="quiz-icon">
                 <MdQuiz />
@@ -126,7 +147,8 @@ function QuizList() {
               <div className="quiz-meta">
                 <span className="quiz-subject">{quiz.subject}</span>
                 <span className="quiz-details">
-                  {quiz.totalQuestions} Questions • {quiz.totalMarks} Marks • {quiz.timeLimit} min
+                  {quiz.totalQuestions} Questions • {quiz.totalMarks} Marks •{" "}
+                  {quiz.timeLimit} min
                 </span>
               </div>
             </div>
@@ -163,7 +185,7 @@ function QuizList() {
 
             <button
               className={`start-quiz-btn ${quiz.attempted ? "reattempt" : ""}`}
-              onClick={() => handleStartQuiz(quiz.id)}
+              onClick={() => handleStartQuiz(quiz._id)}
             >
               {quiz.attempted ? <MdRefresh /> : <MdPlayArrow />}
               <span>{quiz.attempted ? "Re-attempt" : "Start Quiz"}</span>

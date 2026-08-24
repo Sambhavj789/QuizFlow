@@ -20,6 +20,8 @@ function Login() {
     const response = await api.post("/user/login", data);
     if (response.data?.success) {
       alert("Login Successfully");
+      const data = response.data?.data;
+      localStorage.setItem("userData", JSON.stringify(data));
     } else {
       alert("Login Failed");
     }
