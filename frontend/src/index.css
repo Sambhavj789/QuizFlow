@@ -5,6 +5,7 @@
      Colors
   ========================== */
    --bg: #F9F9FF;
+   --bg-secondary: #F1F5F9;
 
    --primary: #004AC6;
    --primary-hover: #003A9E;
@@ -12,6 +13,9 @@
 
    --secondary: #07006C;
    --secondary-light: #EDEBFF;
+
+   --danger: #DC2626;
+   --danger-light: #FEE2E2;
 
    /* =========================
      Text
@@ -29,6 +33,7 @@
    --border-light: #F1F5F9;
    --border-dark: #CBD5E1;
    --border-primary: #004AC6;
+   --border-color: #E2E8F0;
 
    /* =========================
      Status

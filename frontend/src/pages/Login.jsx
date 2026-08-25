@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/AuthContext";
 import "./Login.css";
 import { MdQuiz } from "react-icons/md";
 import { MdMailOutline } from "react-icons/md";
@@ -10,20 +12,39 @@ function Login() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { login } = useUser();
 
   function handleChange(e) {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+    setError("");
   }
 
   async function handleSubmit() {
-    const response = await api.post("/user/login", data);
-    if (response.data?.success) {
-      alert("Login Successfully");
-      const data = response.data?.data;
-      localStorage.setItem("userData", JSON.stringify(data));
-    } else {
-      alert("Login Failed");
+    setLoading(true);
+    setError("");
+    try {
+      const response = await api.post("/user/login", data);
+      if (response.data?.success) {
+        const userData = response.data?.data;
+        login(userData);
+        
+        // Redirect based on role
+        if (userData.role === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/quizzes");
+        }
+      } else {
+        setError(response.data?.message || "Login Failed");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -43,6 +64,8 @@ function Login() {
           <h1>QuizFlow</h1>
           <p>Welcome back to the coaching portal</p>
         </div>
+
+        {error && <div className="error-message">{error}</div>}
 
         <div className="form-rows">
           <label htmlFor="">Email Address</label>
@@ -71,7 +94,9 @@ function Login() {
           </div>
         </div>
 
-        <button className="login-button">Login</button>
+        <button className="login-button" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
       </form>
     </section>
   );

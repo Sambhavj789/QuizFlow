@@ -1,9 +1,19 @@
 import { NavLink, Outlet } from "react-router-dom";
-import { MdDashboard, MdGroup, MdClass, MdOutlineQuiz } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/AuthContext";
+import { MdDashboard, MdGroup, MdClass, MdOutlineQuiz, MdLogout } from "react-icons/md";
 import { IoCreate } from "react-icons/io5";
 
 import "./AdminLayout.css";
 function AdminLayout() {
+  const { user, logout } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div className="admin-layout">
       <div className="admin-sidebar">
@@ -57,10 +67,14 @@ function AdminLayout() {
               alt=""
             />
             <div>
-              <span>Admin User</span>
-              <span>admin@quizflow.com</span>
+              <span>{user?.name || "Admin User"}</span>
+              <span>{user?.email || "admin@quizflow.com"}</span>
             </div>
           </div>
+          <button className="admin-logout-btn" onClick={handleLogout}>
+            <MdLogout className="logout-icon" />
+            <span>Logout</span>
+          </button>
         </div>
       </div>
 
